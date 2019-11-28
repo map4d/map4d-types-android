@@ -1,0 +1,2 @@
+include ':demo', ':Map4dTypes'
+rootProject.name='map4d-services-android'

@@ -8,6 +8,7 @@ import android.view.MenuItem
 
 import kotlinx.android.synthetic.main.activity_main.*
 import vn.map4d.types.MFLocationCoordinate
+import vn.map4d.types.area
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,8 +23,6 @@ class MainActivity : AppCompatActivity() {
       Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
         .setAction("Action", null).show()
     }
-
-    var coordinate = MFLocationCoordinate(0.0, 0.0);
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {

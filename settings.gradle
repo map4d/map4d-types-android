@@ -1,2 +1,2 @@
 include ':demo', ':Map4dTypes'
-rootProject.name='map4d-services-android'
+rootProject.name='map4d-types-android'

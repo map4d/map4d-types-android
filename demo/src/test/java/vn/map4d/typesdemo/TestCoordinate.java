@@ -6,6 +6,7 @@ import java.util.List;
 
 import vn.map4d.types.MFLocationCoordinate;
 import vn.map4d.utils.Measure;
+import vn.map4d.utils.Polyline;
 
 public class TestCoordinate {
   @Test

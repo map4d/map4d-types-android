@@ -4,9 +4,11 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 import vn.map4d.utils.Measure
 import java.io.Serializable
+import kotlin.math.abs
+import kotlin.math.atan
 
 @Parcelize
-class MFLocationCoordinate(private var latitude: Double, private var longitude: Double): Parcelable, Serializable {
+open class MFLocationCoordinate(private var latitude: Double, private var longitude: Double): Parcelable, Serializable {
   init {
     this.latitude = Math.max(minLatitude, Math.min(maxLatitude, latitude))
     this.longitude = Math.max(minLongitude, Math.min(maxLongitude, longitude))
@@ -45,6 +47,41 @@ class MFLocationCoordinate(private var latitude: Double, private var longitude: 
       return it.latitude.compareTo(latitude) == 0 && it.longitude.compareTo(longitude) == 0
     }
     return false
+  }
+
+  fun subtract(other: MFLocationCoordinate): MFLocationCoordinate {
+    return MFLocationCoordinate(latitude - other.latitude, longitude - other.longitude)
+  }
+
+  fun multiply(mul: Double): MFLocationCoordinate {
+    return MFLocationCoordinate(latitude * mul, longitude * mul)
+  }
+
+  fun angle(other: MFLocationCoordinate): Double {
+    val dLat = other.latitude - latitude
+    val dLng = other.longitude - longitude
+    if (abs(dLat).compareTo(0) == 0) {
+      if (dLng > 0.0) {
+        return 90.0
+      } else {
+        return 270.0
+      }
+    }
+
+    val tanA = dLng / dLat
+    var a = atan(tanA)
+    if (a > 0) {
+      if (dLng < 0) {
+        a += Math.PI
+      }
+    } else {
+      if (dLng < 0) {
+        a += 2*Math.PI
+      } else {
+        a += Math.PI
+      }
+    }
+    return ((a / Math.PI * 180) + 360) % 360
   }
 
   companion object {

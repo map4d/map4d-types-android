@@ -1,12 +1,14 @@
 package vn.map4d.types
 
 import android.os.Parcelable
+import androidx.annotation.Keep
 import kotlinx.android.parcel.Parcelize
 import vn.map4d.utils.Measure
 import java.io.Serializable
 import kotlin.math.abs
 import kotlin.math.atan
 
+@Keep
 @Parcelize
 open class MFLocationCoordinate(private var latitude: Double, private var longitude: Double): Parcelable, Serializable {
   init {
